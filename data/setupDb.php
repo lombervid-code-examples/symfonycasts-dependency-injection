@@ -1,10 +1,10 @@
 <?php
 
 try {
-    $dbPath = __DIR__.'/database.sqlite';
-    $dbh = new PDO('sqlite:'.$dbPath);
-} catch(PDOException $e) {
-    die('Panic! '.$e->getMessage());
+    $dbPath = __DIR__ . '/database.sqlite';
+    $dbh = new PDO('sqlite:' . $dbPath);
+} catch (PDOException $e) {
+    die('Panic! ' . $e->getMessage());
 }
 
 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
