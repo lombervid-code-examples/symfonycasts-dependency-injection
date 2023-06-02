@@ -5,7 +5,7 @@ namespace DiDemo\Mailer;
 /**
  * Sends emails via SMTP
  */
-class SmtpMailer
+class SmtpMailer implements MailerInterface
 {
     private $hostname;
 
@@ -25,14 +25,13 @@ class SmtpMailer
 
     /**
      * Sends an email message
-     *
-     * @param string $recipientEmail
-     * @param string $subject
-     * @param string $message
-     * @param string $from
      */
-    public function sendMessage($recipientEmail, $subject, $message, $from)
-    {
+    public function sendMessage(
+        string $recipientEmail,
+        string $subject,
+        string $message,
+        string $from,
+    ): void {
         // dummy implementation - this class is just used as an example
 
         // hack - just log something so we can see it
