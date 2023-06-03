@@ -1,19 +1,18 @@
 <?php
 
+use Pimple\Container;
+
 require __DIR__ . '/vendor/autoload.php';
 
-use DiDemo\FriendHarvester;
-use DiDemo\Mailer\SmtpMailer;
+/* START CONTAINER BUILDING */
 
-$dsn = 'sqlite:' . __DIR__ . '/data/database.sqlite';
-$pdo = new PDO($dsn);
+$container = new Container();
 
-$mailer = new SmtpMailer(
-    'smtp.SendMoneyToStrangers.com',
-    'smtpuser',
-    'smtppass',
-    465,
-);
+require __DIR__ . '/app/config.php';
+require __DIR__ . '/app/services.php';
 
-$friendHarvester = new FriendHarvester($pdo, $mailer);
+/* END CONTAINER BUILDING */
+
+/** @var \DiDemo\FriendHarvester $friendHarvester */
+$friendHarvester = $container['friend_harvester'];
 $friendHarvester->emailFriends();
